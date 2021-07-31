@@ -4,6 +4,7 @@ var app = express();
 const router=express.Router();
 const userModel=require('../models/userModel');
 
+//get all users
 router.get('/',async(req,res)=>{
     try{
         const user=await userModel.find().limit(5).sort({created_at:'desc'});
@@ -13,7 +14,7 @@ router.get('/',async(req,res)=>{
     }
     
 });
-
+//get userby _id
 router.get('/:id',async(req,res)=>{
     try{
         const user=await userModel.find();
@@ -24,6 +25,7 @@ router.get('/:id',async(req,res)=>{
     
 });
 
+//creating user
 router.post('/create',async(req,res)=>{
     try {
         const data= new userModel(req.body);
@@ -41,6 +43,7 @@ router.post('/create',async(req,res)=>{
     }
 })
 
+//update userby _id
 router.patch('/updateUser/:id',async (req,res)=>{
    try {
     const filter={"_id":req.params.id};
@@ -52,6 +55,7 @@ router.patch('/updateUser/:id',async (req,res)=>{
     }
 })
 
+//delete userby _id
 router.delete('/deleteUser/:id',async(req,res)=>{
     try {
         const data= await userModel.findByIdAndDelete(req.params.id, function (err) {

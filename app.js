@@ -1,12 +1,9 @@
 const Express = require("express");
 const BodyParser = require("body-parser");
 var app = Express();
-//const MongoClient = require("mongodb").MongoClient;
-//const ObjectId = require("mongodb").ObjectID;
 var mongoose = require('mongoose');
 const mongoDBURL ="mongodb://localhost/test" ;
 mongoose.connect(mongoDBURL, {useNewUrlParser: true, useUnifiedTopology: true});
-//const DATABASE_NAME = "test";
 var db = mongoose.connection;
 db.on('open',() => {
     console.log("working");
